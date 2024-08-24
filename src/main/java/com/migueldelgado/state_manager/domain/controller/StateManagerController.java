@@ -1,36 +1,32 @@
 package com.migueldelgado.state_manager.domain.controller;
 
-import com.migueldelgado.state_manager.domain.entity.detran.UFEnum;
-import com.migueldelgado.state_manager.domain.entity.state.StateEntity;
-import com.migueldelgado.state_manager.domain.repository.*;
+import com.migueldelgado.state_manager.domain.entity.state.StateRequestBody;
+import com.migueldelgado.state_manager.domain.useCase.CreateStateUseCase;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.HashMap;
+
 @RestController
 public class StateManagerController {
 
-    private StateRepository stateRepository;
-    private IntegrationRepository integrationRepository;
-    private DetranRepository detranRepository;
-    private StatusRepository statusRepository;
-    private StatusHistoryRepository statusHistoryRepository;
+    @Autowired
+    private CreateStateUseCase createStateUseCase;
 
+    @PostMapping("/create-state")
+    public ResponseEntity<Object> createState(@RequestBody StateRequestBody req) {
 
-    @PostMapping("/all")
-    public ResponseEntity<Object> all(@RequestBody String stateName, String uf) {
+        var state = createStateUseCase.execute(req);
 
-        var state = new StateEntity();
-        state.setName(stateName);
+        var response = new HashMap<String, String>();
+        response.put("msg", "Aconteceu algo de errrado. Verifique os dados enviados");
 
-        for () {
-
-        state.setUf(UFEnum.valueOf(uf));
-
-        stateRepository.save(state);
-
-        return ResponseEntity.ok(state);
+        return state.<ResponseEntity<Object>>map(ResponseEntity::ok)
+                     .orElseGet(() -> ResponseEntity.status(HttpStatus.CONFLICT).body(response));
     }
 
 }

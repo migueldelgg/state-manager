@@ -1,6 +1,5 @@
 package com.migueldelgado.state_manager.domain.entity.state;
 
-import com.migueldelgado.state_manager.domain.entity.detran.UFEnum;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -12,9 +11,6 @@ public class StateEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "state_id")
     private Long id;
-
-    @Column(name = "state_name")
-    private String name;
 
     @Column(name = "state_uf", unique = true)
     @Enumerated(EnumType.STRING)
