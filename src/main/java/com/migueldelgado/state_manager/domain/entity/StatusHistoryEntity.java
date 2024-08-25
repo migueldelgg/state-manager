@@ -10,6 +10,7 @@ import java.time.Instant;
 
 @Entity
 @Data
+@Table(name = "tb_historico")
 public class StatusHistoryEntity {
 
     @Id

@@ -7,6 +7,7 @@ import lombok.Data;
 
 @Entity
 @Data
+@Table(name = "tb_integration")
 public class IntegrationEntity {
 
     @Id

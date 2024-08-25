@@ -6,6 +6,7 @@ import lombok.Data;
 
 @Entity
 @Data
+@Table(name = "tb_detran")
 public class DetranEntity {
 
     @Id
