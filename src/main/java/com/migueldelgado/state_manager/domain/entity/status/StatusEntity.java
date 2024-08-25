@@ -8,6 +8,7 @@ import java.time.Instant;
 
 @Entity
 @Data
+@Table(name = "tb_status")
 public class StatusEntity {
 
     @Id

@@ -2,11 +2,13 @@ package com.migueldelgado.state_manager.domain.entity.integration;
 
 import com.migueldelgado.state_manager.domain.entity.status.StatusEntity;
 import com.migueldelgado.state_manager.domain.entity.detran.DetranEntity;
+import com.migueldelgado.state_manager.domain.entity.user.UserEntity;
 import jakarta.persistence.*;
 import lombok.Data;
 
 @Entity
 @Data
+@Table(name = "tb_integration")
 public class IntegrationEntity {
 
     @Id
@@ -24,4 +26,8 @@ public class IntegrationEntity {
     @OneToOne
     @JoinColumn(name = "present_status_id", referencedColumnName = "status_id")
     private StatusEntity presentStatus;
+
+    @ManyToOne
+    @JoinColumn(name = "criado_por", referencedColumnName = "user_id")
+    private UserEntity createdBy;
 }
