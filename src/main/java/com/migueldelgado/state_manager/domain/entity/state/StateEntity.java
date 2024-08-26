@@ -1,11 +1,15 @@
 package com.migueldelgado.state_manager.domain.entity.state;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Data
 @Table(name = "tb_state")
+@AllArgsConstructor
+@NoArgsConstructor
 public class StateEntity {
 
     @Id

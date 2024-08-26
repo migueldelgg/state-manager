@@ -35,9 +35,6 @@ public class CreateStateUseCase {
 
     public boolean isValid(StateRequestBody req){
         return !req.uf().isBlank() &&
-                req.uf().length() == 2 &&
-                !req.name().isBlank() &&
-                req.name().length() >= 2 &&
-                req.name().length() <= 20;
+                req.uf().length() == 2;
     }
 }
